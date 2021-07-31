@@ -5,7 +5,6 @@ from torch import nn, optim
 import Data_Container, Model_Trainer, GCN, STMGCN
 
 
-
 data_dir = './data/data_dict.npz'
 dt = 1      # time_slice
 epoch = 100
@@ -14,7 +13,6 @@ learn_rate, weight_decay = 2e-3, 1e-4       # L2 regularization
 M_adj = 3      # num static adjs
 sta_kernel_config = {'kernel_type':'chebyshev', 'K':2}
 loss_opt = 'MSE'
-
 
 
 if __name__ == '__main__':
@@ -59,7 +57,7 @@ if __name__ == '__main__':
 
     # model
     if model_name == 'STMGCN':
-        model = STMGCN.ST_MGCN(M=M_adj, seq_len=sum(obs_len), n_nodes=58, input_dim=1, lstm_hidden_dim=64, lstm_num_layers=3,
+        model = STMGCN.ST_MGCN(M=M_adj, seq_len=sum(obs_len), n_nodes=30, input_dim=1, lstm_hidden_dim=64, lstm_num_layers=3,
                                gcn_hidden_dim=64, sta_kernel_config=sta_kernel_config, gconv_use_bias=True, gconv_activation=nn.ReLU)
         model = model.to(args.device)
     else:

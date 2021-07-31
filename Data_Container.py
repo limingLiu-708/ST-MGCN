@@ -21,11 +21,11 @@ class DataInput(object):
         dataset['taxi'] = self.minmax_normalize(npz_data['taxi']) if self.norm_opt else npz_data['taxi']
         # sta_adj
         if self.M_sta >= 1:
-            dataset['neighbor_adj'] = npz_data['neighbor_adj']
+            dataset['neighbor_adj'] = npz_data['neighbor_adj'] + 1e-4
         if self.M_sta >= 2:
-            dataset['trans_adj'] = npz_data['trans_adj']
+            dataset['trans_adj'] = npz_data['trans_adj'] + 1e-4
         if self.M_sta >= 3:
-            dataset['semantic_adj'] = npz_data['semantic_adj']
+            dataset['semantic_adj'] = npz_data['semantic_adj'] + 1e-4
         return dataset
 
     def minmax_normalize(self, x:np.array):

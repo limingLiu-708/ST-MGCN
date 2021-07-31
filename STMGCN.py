@@ -32,6 +32,8 @@ class CG_LSTM(nn.Module):
         :param hidden: tuple of hidden states (h, c) - torch.Tensor (n_layers, batch_size*n_nodes, hidden_dim) x2
         :return:
         '''
+        # TODO
+        obs_seq = obs_seq[..., None]
         batch_size = obs_seq.shape[0]
         x_seq = obs_seq.sum(dim=-1)     # sum up feature dimension: default 1
 
@@ -116,6 +118,6 @@ class ST_MGCN(nn.Module):
         feat_fusion = torch.sum(torch.stack(feat_list, dim=-1), dim=-1)     # aggregation
 
         output = self.fc(feat_fusion)
-        return output
+        return output[:,:,0]
 
 
